@@ -169,8 +169,8 @@ export default function App() {
       const parsed = parseExtrato(raw)
       setRows(parsed)
       setError(null)
-    } catch (e: any) {
-      setError(e?.message ?? 'Erro ao processar arquivo')
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Erro ao processar arquivo')
       setRows([])
     }
   }

@@ -17,7 +17,7 @@ export function parseExtrato(raw: string): Movimento[] {
   const header = lines[0].split(SPLIT_SEMI_OUTSIDE_QUOTES).map(stripQuotes)
   const expected = ["Conta","Data_Mov","Nr_Doc","Historico","Valor","Deb_Cred"]
   const looksOk = expected.every((col, i) => header[i]?.toLowerCase() === col.toLowerCase())
-  if (!looksOk && header.length !== 6) {
+  if (!looksOk || header.length !== 6) {
     throw new Error('Cabeçalho inválido. Esperado: "Conta";"Data_Mov";"Nr_Doc";"Historico";"Valor";"Deb_Cred"')
   }
 
